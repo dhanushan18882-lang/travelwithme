@@ -60,19 +60,19 @@ export async function sendOwnerNotification(
     subject: `🌴 New Travel Inquiry from ${formData.firstName} ${formData.lastName}`,
     from_name: businessName,
     replyto: formData.email,
-    // Web3Forms accepts custom fields directly in the root of the JSON payload
-    "First Name": formData.firstName,
-    "Last Name": formData.lastName,
-    "Email Address": formData.email,
-    "Phone Number": formData.phone || "Not provided",
-    "Interested Destination": formData.customDestination || formData.destination || "Not specified",
-    "Message": formData.message,
-    "Submission ID": submissionId,
-    // Note: We can also pass custom HTML to Web3Forms, but sending the structured
-    // data fields above is often cleaner for their default email template. 
-    // If we want our exact custom HTML design, we can pass it as 'message' (with a specific structure)
-    // or as a custom field. Here we'll just send the clean structured data which 
-    // Web3Forms will format nicely on their end.
+    // Constructing a detailed message body for Web3Forms
+    message: `
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Phone: ${formData.phone || "Not provided"}
+Destination: ${formData.customDestination || formData.destination || "Not specified"}
+
+Message:
+${formData.message}
+
+---
+Submission ID: ${submissionId}
+    `.trim()
   };
 
   try {
