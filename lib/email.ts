@@ -4,7 +4,7 @@ import {
   generateOwnerEmailTemplate,
   generateOwnerEmailText,
   EmailTemplateData,
-} from "./emailTemplates";
+} from "./emailTemplates.js";
 
 export interface ContactFormData {
   firstName: string;
