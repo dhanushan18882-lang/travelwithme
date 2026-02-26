@@ -6,18 +6,18 @@ import {
   validateContactForm,
   sanitizeFormData,
   detectSpam,
-} from "../lib/validation";
+} from "../lib/validation.js";
 import {
   checkRateLimit,
   getClientIP,
   formatRemainingTime,
   getRateLimitReset,
-} from "../lib/rateLimit";
+} from "../lib/rateLimit.js";
 import {
   sendOwnerNotification,
   generateSubmissionId,
   validateEmailConfig,
-} from "../lib/email";
+} from "../lib/email.js";
 
 // Enable CORS
 function setCorsHeaders(res: VercelResponse) {
@@ -129,8 +129,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("❌ Error processing contact form:", error);
     console.error("Error stack:", error.stack);
 
-    // Check if it's a SendGrid error
-    if (error.message && error.message.includes("SendGrid")) {
+    // Check if it's a Web3Forms error
+    if (error.message && error.message.includes("Web3Forms")) {
       return res.status(500).json({
         success: false,
         message:
