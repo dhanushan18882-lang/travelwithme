@@ -1,5 +1,6 @@
 import React from 'react';
 
+<<<<<<< HEAD
 // Using consistent nature/travel themed images from picsum
 const images = [
   "https://picsum.photos/id/1018/800/600",
@@ -8,6 +9,16 @@ const images = [
   "https://picsum.photos/id/1029/800/600",
   "https://picsum.photos/id/1040/800/600",
   "https://picsum.photos/id/164/800/600",
+=======
+// Local gallery images — place originals in public/images/
+const images = [
+  '/images/gallery-1.jpg',
+  '/images/gallery-2.jpg',
+  '/images/gallery-3.jpg',
+  '/images/gallery-4.jpg',
+  '/images/gallery-5.jpg',
+  '/images/gallery-6.jpg',
+>>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
 ];
 
 export const Gallery: React.FC = () => {

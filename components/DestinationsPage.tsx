@@ -3,6 +3,7 @@ import { Destination, NavigationProps } from '../types';
 import { MapPin, ArrowRight } from 'lucide-react';
 
 const allDestinations: Destination[] = [
+<<<<<<< HEAD
   { id: 1, name: 'Sigiriya', image: 'https://picsum.photos/id/1036/800/1000', category: 'Heritage', description: 'Explore the ancient rock fortress, a UNESCO World Heritage site known for its frescoes and mirror wall.' },
   { id: 2, name: 'Ella', image: 'https://picsum.photos/id/1039/800/1000', category: 'Nature', description: 'Immerse yourself in the scenic hill country, famous for the Nine Arch Bridge, hiking trails, and lush tea plantations.' },
   { id: 3, name: 'Jaffna', image: 'https://picsum.photos/id/1043/800/1000', category: 'Heritage', description: 'Experience the unique culture of the North, visiting colorful Hindu temples, the historic fort, and secluded islands.' },
@@ -19,6 +20,24 @@ const allDestinations: Destination[] = [
   { id: 14, name: 'Sinharaja Forest', image: 'https://picsum.photos/id/1016/800/1000', category: 'Nature', description: 'Explore this UNESCO Biosphere Reserve, a biodiversity hotspot teeming with endemic flora and fauna.' },
   { id: 15, name: 'Bentota', image: 'https://picsum.photos/id/1041/800/1000', category: 'Beaches', description: 'The prime destination for water sports, luxury resorts, and a relaxing river safari among the mangroves.' },
   { id: 16, name: 'Adam\'s Peak', image: 'https://picsum.photos/id/1035/800/1000', category: 'Nature', description: 'Climb this sacred mountain at sunrise, a pilgrimage site revered by multiple religions for the "Sacred Footprint".' },
+=======
+  { id: 1, name: 'Sigiriya', image: '/images/sigiriya.jpg', category: 'Heritage', description: 'Explore the ancient rock fortress, a UNESCO World Heritage site known for its frescoes and mirror wall.' },
+  { id: 2, name: 'Ella', image: '/images/ella.jpg', category: 'Nature', description: 'Immerse yourself in the scenic hill country, famous for the Nine Arch Bridge, hiking trails, and lush tea plantations.' },
+  { id: 3, name: 'Jaffna', image: '/images/jaffna.jpg', category: 'Heritage', description: 'Experience the unique culture of the North, visiting colorful Hindu temples, the historic fort, and secluded islands.' },
+  { id: 4, name: 'Kandy', image: '/images/kandy.jpg', category: 'Heritage', description: 'Visit the cultural capital, home to the Temple of the Sacred Tooth Relic and beautiful botanical gardens.' },
+  { id: 5, name: 'Galle Fort', image: '/images/galle-fort.jpg', category: 'Heritage', description: 'Wander through the cobblestone streets of this historic Dutch colonial fort, lined with cafes and boutiques.' },
+  { id: 6, name: 'Nuwara Eliya', image: '/images/nuwara-eliya.jpg', category: 'Nature', description: 'Known as "Little England," enjoy cool climates, colonial architecture, and endless green tea estates.' },
+  { id: 7, name: 'Yala National Park', image: '/images/yala.jpg', category: 'Wildlife', description: 'Go on a safari to spot leopards, elephants, and diverse birdlife in Sri Lanka\'s most popular wildlife park.' },
+  { id: 8, name: 'Mirissa', image: '/images/mirissa.jpg', category: 'Beaches', description: 'Relax on golden sandy beaches and embark on a whale-watching tour to see the magnificent Blue Whales.' },
+  { id: 9, name: 'Polonnaruwa', image: '/images/polonnaruwa.jpg', category: 'Heritage', description: 'Step back in time at this ancient kingdom featuring well-preserved stupas, statues, and royal palaces.' },
+  { id: 10, name: 'Anuradhapura', image: '/images/anuradhapura.jpg', category: 'Heritage', description: 'Discover the ruins of the first capital of Sri Lanka, home to one of the oldest living trees in the world.' },
+  { id: 11, name: 'Trincomalee', image: '/images/trincomalee.jpg', category: 'Beaches', description: 'Visit the east coast for pristine white sandy beaches, the Koneswaram Temple, and Pigeon Island snorkeling.' },
+  { id: 12, name: 'Arugam Bay', image: '/images/arugam-bay.jpg', category: 'Beaches', description: 'A world-renowned surfing destination on the east coast with a laid-back vibe and excellent waves.' },
+  { id: 13, name: 'Horton Plains', image: '/images/horton-plains.jpg', category: 'Nature', description: 'Trek through cloud forests to "World\'s End", a sheer cliff with breathtaking views of the southern plains.' },
+  { id: 14, name: 'Sinharaja Forest', image: '/images/sinharaja.jpg', category: 'Nature', description: 'Explore this UNESCO Biosphere Reserve, a biodiversity hotspot teeming with endemic flora and fauna.' },
+  { id: 15, name: 'Bentota', image: '/images/bentota.jpg', category: 'Beaches', description: 'The prime destination for water sports, luxury resorts, and a relaxing river safari among the mangroves.' },
+  { id: 16, name: 'Adam\'s Peak', image: '/images/adams-peak.jpg', category: 'Nature', description: 'Climb this sacred mountain at sunrise, a pilgrimage site revered by multiple religions for the "Sacred Footprint".' },
+>>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
 ];
 
 const categories = ["All", "Heritage", "Nature", "Beaches", "Wildlife"];
@@ -67,7 +86,14 @@ export const DestinationsPage: React.FC<NavigationProps> = ({ onNavigate }) => {
                 <img
                   src={dest.image}
                   alt={dest.name}
+<<<<<<< HEAD
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+=======
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 image-rendering-crisp"
+                  style={{ imageRendering: 'crisp-edges' }}
+>>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
                 />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1 text-xs font-semibold text-primary-800 shadow-sm">
                   <MapPin size={12} />

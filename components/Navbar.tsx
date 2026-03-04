@@ -60,7 +60,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
               <button
                 key={link.name}
                 onClick={(e) => handleNavClick(link.page, e)}
+<<<<<<< HEAD
                 className={`text-sm font-medium transition-colors hover:text-accent ${
+=======
+                className={`text-base font-medium transition-colors hover:text-accent ${
+>>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
                   currentPage === link.page 
                     ? 'text-accent' 
                     : showSolidNav ? 'text-stone-600' : 'text-stone-200 hover:text-white'
@@ -75,7 +79,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
           <div className="flex items-center gap-4 z-20">
             <button 
               onClick={(e) => handleNavClick('contact', e)}
+<<<<<<< HEAD
               className="hidden md:block bg-stone-900 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-stone-800 transition-transform transform hover:scale-105 active:scale-95 shadow-lg"
+=======
+              className="hidden md:block bg-stone-900 text-white px-4 py-2 rounded-full text-base font-medium hover:bg-stone-800 transition-transform transform hover:scale-105 active:scale-95 shadow-lg"
+>>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
             >
               Contact Us
             </button>
@@ -110,7 +118,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
             ))}
             <button 
               onClick={(e) => handleNavClick('contact', e)}
+<<<<<<< HEAD
               className="w-full mt-4 bg-primary-900 text-white px-6 py-3 rounded-lg text-base font-medium"
+=======
+              className="w-full mt-4 bg-primary-900 text-white px-4 py-2 rounded-lg text-base font-medium"
+>>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
             >
               Contact Us
             </button>

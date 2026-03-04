@@ -7,9 +7,17 @@ export const Hero: React.FC<NavigationProps> = ({ onNavigate }) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
+<<<<<<< HEAD
           src="https://picsum.photos/id/1015/1920/1080" 
           alt="Sri Lanka landscape"
           className="w-full h-full object-cover"
+=======
+          src="/images/hero.jpg"
+          alt="Sri Lanka landscape"
+          className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+>>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-stone-50"></div>
       </div>

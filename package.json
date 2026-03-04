@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "react-dom": "^19.2.0",
     "react": "^19.2.0",
     "@google/genai": "^1.30.0",
@@ -21,5 +22,21 @@
     "typescript": "~5.8.2",
     "vite": "^6.2.0",
     "@vercel/node": "^3.0.0"
+=======
+    "@google/genai": "^1.30.0",
+    "@sendgrid/mail": "^8.1.0",
+    "lucide-react": "^0.554.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vercel/node": "^3.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vercel": "^50.23.2",
+    "vite": "^6.2.0",
+    "vite-plugin-imagemin": "^0.6.1"
+>>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
   }
 }
