@@ -129,8 +129,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("❌ Error processing contact form:", error);
     console.error("Error stack:", error.stack);
 
-    // Check if it's a SendGrid error
-    if (error.message && error.message.includes("SendGrid")) {
+    // Check if it's a SendGrid error or a general email failure
+    if (
+      error.message &&
+      (error.message.includes("SendGrid") ||
+        error.message.includes("email"))
+    ) {
       return res.status(500).json({
         success: false,
         message:
