@@ -3,17 +3,10 @@ import { Destination, NavigationProps } from '../types';
 import { ArrowRight } from 'lucide-react';
 
 const destinations: Destination[] = [
-<<<<<<< HEAD
-  { id: 1, name: 'Sigiriya', image: 'https://picsum.photos/id/1036/800/1000', description: 'Ancient rock fortress.', category: 'Heritage' },
-  { id: 2, name: 'Ella', image: 'https://picsum.photos/id/1039/800/1000', description: 'Scenic hills & tea.', category: 'Nature' },
-  { id: 3, name: 'Jaffna', image: 'https://picsum.photos/id/1043/800/1000', description: 'Northern culture.', category: 'Heritage' },
-  { id: 4, name: 'Kandy', image: 'https://picsum.photos/id/164/800/1000', description: 'Sacred temples.', category: 'Heritage' },
-=======
   { id: 1, name: 'Sigiriya', image: '/images/sigiriya.jpg', description: 'Ancient rock fortress.', category: 'Heritage' },
   { id: 2, name: 'Ella', image: '/images/ella.jpg', description: 'Scenic hills & tea.', category: 'Nature' },
   { id: 3, name: 'Jaffna', image: '/images/jaffna.jpg', description: 'Northern culture.', category: 'Heritage' },
   { id: 4, name: 'Kandy', image: '/images/kandy.jpg', description: 'Sacred temples.', category: 'Heritage' },
->>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
 ];
 
 export const Destinations: React.FC<NavigationProps> = ({ onNavigate }) => {
@@ -31,14 +24,9 @@ export const Destinations: React.FC<NavigationProps> = ({ onNavigate }) => {
               <img
                 src={dest.image}
                 alt={dest.name}
-<<<<<<< HEAD
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-=======
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 image-rendering-crisp"
-                style={{ imageRendering: 'crisp-edges' }}
->>>>>>> eae511145998e77f5a92066f5cd4016cc3781ee7
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
               
