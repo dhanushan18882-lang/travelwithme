@@ -6,18 +6,18 @@ import {
   validateContactForm,
   sanitizeFormData,
   detectSpam,
-} from "../lib/validation";
+} from "../lib/validation.js";
 import {
   checkRateLimit,
   getClientIP,
   formatRemainingTime,
   getRateLimitReset,
-} from "../lib/rateLimit";
+} from "../lib/rateLimit.js";
 import {
   sendOwnerNotification,
   generateSubmissionId,
   validateEmailConfig,
-} from "../lib/email";
+} from "../lib/email.js";
 
 // Enable CORS
 function setCorsHeaders(res: VercelResponse) {
