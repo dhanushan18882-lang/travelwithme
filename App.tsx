@@ -18,16 +18,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen font-sans selection:bg-primary-200 selection:text-primary-900">
-      <Navbar onNavigate={handleNavigate}       cd "c:\Users\dhanu\OneDrive\Desktop\travelwithme-sri-lanka-master\travelwithme-sri-lanka-master"
-      git add .
-      git commit -m "Force redeploy"
-      git push origin main      cd "c:\Users\dhanu\OneDrive\Desktop\travelwithme-sri-lanka-master\travelwithme-sri-lanka-master"
-      git add .
-      git commit -m "Force redeploy"
-      git push origin main      cd "c:\Users\dhanu\OneDrive\Desktop\travelwithme-sri-lanka-master\travelwithme-sri-lanka-master"
-      git add .
-      git commit -m "Force redeploy"
-      git push origin maincurrentPage={currentPage} />
+      <Navbar onNavigate={handleNavigate} currentPage={currentPage} />
       <main>
         {currentPage === 'home' && (
           <>
