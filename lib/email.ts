@@ -5,7 +5,7 @@ import {
   generateOwnerEmailTemplate,
   generateOwnerEmailText,
   EmailTemplateData,
-} from "./emailTemplates";
+} from "./emailTemplates.js";
 
 // Initialize SendGrid with API key
 if (process.env.SENDGRID_API_KEY) {
