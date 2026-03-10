@@ -296,9 +296,8 @@ export const ContactPage: React.FC = () => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-lg border ${
-                      errors.firstName ? "border-red-500" : "border-stone-300"
-                    } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
+                    className={`w-full px-4 py-3 rounded-lg border ${errors.firstName ? "border-red-500" : "border-stone-300"
+                      } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
                     placeholder="John"
                   />
                   {errors.firstName && (
@@ -320,9 +319,8 @@ export const ContactPage: React.FC = () => {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-lg border ${
-                      errors.lastName ? "border-red-500" : "border-stone-300"
-                    } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
+                    className={`w-full px-4 py-3 rounded-lg border ${errors.lastName ? "border-red-500" : "border-stone-300"
+                      } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
                     placeholder="Doe"
                   />
                   {errors.lastName && (
@@ -347,9 +345,8 @@ export const ContactPage: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    errors.email ? "border-red-500" : "border-stone-300"
-                  } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
+                  className={`w-full px-4 py-3 rounded-lg border ${errors.email ? "border-red-500" : "border-stone-300"
+                    } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
                   placeholder="john@example.com"
                 />
                 {errors.email && (
@@ -426,11 +423,10 @@ export const ContactPage: React.FC = () => {
                     name="customDestination"
                     value={formData.customDestination}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-lg border ${
-                      errors.customDestination
+                    className={`w-full px-4 py-3 rounded-lg border ${errors.customDestination
                         ? "border-red-500"
                         : "border-stone-300"
-                    } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
+                      } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
                     placeholder="Enter your destination"
                   />
                   {errors.customDestination && (
@@ -455,9 +451,8 @@ export const ContactPage: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    errors.message ? "border-red-500" : "border-stone-300"
-                  } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
+                  className={`w-full px-4 py-3 rounded-lg border ${errors.message ? "border-red-500" : "border-stone-300"
+                    } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
                   placeholder="Tell us about your travel plans, dates, and preferences..."
                 />
                 {errors.message && (
