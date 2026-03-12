@@ -192,8 +192,8 @@ export const ContactPage: React.FC = () => {
                   <h3 className="font-semibold text-stone-900 text-lg">
                     Call Us
                   </h3>
-                  <p className="text-stone-500">+94 11 234 5678</p>
-                  <p className="text-stone-500">+94 77 123 4567</p>
+                  <p className="text-stone-500">+94 76 076 3259</p>
+                  <p className="text-stone-500">+94 77 267 6749</p>
                 </div>
               </div>
 
@@ -205,8 +205,7 @@ export const ContactPage: React.FC = () => {
                   <h3 className="font-semibold text-stone-900 text-lg">
                     Email Us
                   </h3>
-                  <p className="text-stone-500">hello@travelwithme.lk</p>
-                  <p className="text-stone-500">musichubyt123@gmail.com</p>
+                  <p className="text-stone-500">travelwithmeslk@gmail.com</p>
                 </div>
               </div>
 
@@ -219,9 +218,9 @@ export const ContactPage: React.FC = () => {
                     Visit Us
                   </h3>
                   <p className="text-stone-500">
-                    No. 123, Galle Road,
+                    No.77/7B Nagastenna rd,
                     <br />
-                    Colombo 03, Sri Lanka
+                    Kandy, Sri Lanka
                   </p>
                 </div>
               </div>

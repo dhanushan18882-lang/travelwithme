@@ -124,7 +124,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
                                     </div>
                                     <div>
                                         <p className="text-xs text-primary-600 font-bold uppercase tracking-wider">Address</p>
-                                        <p className="text-stone-900 font-medium text-sm leading-tight">No. 123, Galle Road, Colombo 03, SL</p>
+                                        <p className="text-stone-900 font-medium text-sm leading-tight">No.77/7B Nagastenna rd,Kandy, Sri Lanka</p>
                                     </div>
                                 </div>
                             </div>
