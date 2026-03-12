@@ -424,8 +424,8 @@ export const ContactPage: React.FC = () => {
                     value={formData.customDestination}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 rounded-lg border ${errors.customDestination
-                        ? "border-red-500"
-                        : "border-stone-300"
+                      ? "border-red-500"
+                      : "border-stone-300"
                       } focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all`}
                     placeholder="Enter your destination"
                   />
@@ -473,8 +473,7 @@ export const ContactPage: React.FC = () => {
                   <span className="text-sm text-stone-600">
                     I agree to the{" "}
                     <a
-                      href="/PRIVACY_POLICY.md"
-                      target="_blank"
+                      href="?page=privacy"
                       className="text-primary-600 hover:text-primary-700 underline"
                     >
                       Privacy Policy

@@ -15,11 +15,11 @@ export interface Feature {
   icon: React.ReactNode;
 }
 
-export type Page = 'home' | 'destinations' | 'contact';
+export type Page = 'home' | 'destinations' | 'contact' | 'privacy';
 
 export interface NavigationProps {
   onNavigate: (page: Page) => void;
-} 
+}
 
 // Contact Form Types
 export interface ContactFormData {
