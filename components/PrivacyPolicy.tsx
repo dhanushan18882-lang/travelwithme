@@ -115,7 +115,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
                                     </div>
                                     <div>
                                         <p className="text-xs text-primary-600 font-bold uppercase tracking-wider">Email</p>
-                                        <p className="text-stone-900 font-medium">[EMAIL_ADDRESS]</p>
+                                        <p className="text-stone-900 font-medium">travelwithmeslk@gmail.com</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
