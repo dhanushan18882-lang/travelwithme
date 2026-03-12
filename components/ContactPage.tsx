@@ -194,7 +194,6 @@ export const ContactPage: React.FC = () => {
                   </h3>
                   <p className="text-stone-500">+94 76 076 3259</p>
                   <p className="text-stone-500">+94 77 267 6749</p>
-                  <p className="text-stone-500">+94 76 495 1582</p>
                 </div>
               </div>
 
