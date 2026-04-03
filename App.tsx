@@ -47,7 +47,7 @@ const App: React.FC = () => {
         )}
 
         {currentPage === 'contact' && (
-          <ContactPage />
+          <ContactPage onNavigate={handleNavigate} />
         )}
 
         {currentPage === 'privacy' && (

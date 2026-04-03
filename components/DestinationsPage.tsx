@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Destination, NavigationProps } from '../types';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight, ArrowLeft } from 'lucide-react';
 
 const allDestinations: Destination[] = [
   { id: 1, name: 'Sigiriya', image: '/images/sigiriya.jpg', category: 'Heritage', description: 'Explore the ancient rock fortress, a UNESCO World Heritage site known for its frescoes and mirror wall.' },
@@ -33,6 +33,17 @@ export const DestinationsPage: React.FC<NavigationProps> = ({ onNavigate }) => {
   return (
     <section className="pt-32 pb-24 bg-stone-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Back Button */}
+        <div className="mb-8">
+          <button
+            onClick={() => onNavigate('home')}
+            className="flex items-center gap-2 text-stone-500 hover:text-primary-600 transition-colors font-medium group"
+          >
+            <ArrowLeft size={20} className="transition-transform group-hover:-translate-x-1" />
+            Back to Home
+          </button>
+        </div>
+
         <div className="text-center mb-12">
           <h2 className="text-sm font-bold tracking-widest text-primary-600 uppercase mb-3">Explore Sri Lanka</h2>
           <h1 className="font-serif text-4xl md:text-5xl text-stone-900 font-medium mb-6">Top Destinations</h1>

@@ -8,8 +8,9 @@ import {
   CheckCircle,
   AlertCircle,
   X,
+  ArrowLeft,
 } from "lucide-react";
-import type { ContactFormData, ContactFormResponse } from "../types";
+import type { ContactFormData, ContactFormResponse, NavigationProps } from "../types";
 
 interface FormErrors {
   [key: string]: string;
@@ -21,7 +22,7 @@ interface FormStatus {
   error: string | null;
 }
 
-export const ContactPage: React.FC = () => {
+export const ContactPage: React.FC<NavigationProps> = ({ onNavigate }) => {
   const [formData, setFormData] = useState<ContactFormData>({
     firstName: "",
     lastName: "",
@@ -168,6 +169,17 @@ export const ContactPage: React.FC = () => {
   return (
     <section className="pt-32 pb-24 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Back Button */}
+        <div className="mb-8">
+          <button
+            onClick={() => onNavigate('home')}
+            className="flex items-center gap-2 text-stone-500 hover:text-primary-600 transition-colors font-medium group"
+          >
+            <ArrowLeft size={20} className="transition-transform group-hover:-translate-x-1" />
+            Back to Home
+          </button>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Info */}
           <div>
