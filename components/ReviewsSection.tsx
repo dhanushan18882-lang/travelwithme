@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
+  AlertCircle,
   ImagePlus,
+  Loader2,
   Lock,
   MapPin,
   MessageSquare,
@@ -12,7 +14,6 @@ import {
 } from "lucide-react";
 import type { Review } from "../types";
 
-const STORAGE_KEY = "travelwithme_reviews_v1";
 const MAX_REVIEW_LENGTH = 500;
 const MAX_PHOTOS = 3;
 
@@ -86,6 +87,15 @@ interface FormErrors {
   photos?: string;
 }
 
+interface ReviewsApiResponse {
+  success: boolean;
+  message?: string;
+  source?: "supabase" | "memory";
+  reviews?: Review[];
+  review?: Review;
+  errors?: Record<string, string>;
+}
+
 const initialFormState: ReviewFormState = {
   name: "",
   destination: "",
@@ -103,60 +113,42 @@ const formatReviewDate = (isoDate: string): string => {
   });
 };
 
-const isValidReview = (value: unknown): value is Review => {
-  if (!value || typeof value !== "object") {
-    return false;
-  }
-
-  const candidate = value as Review;
-
-  return (
-    typeof candidate.id === "string" &&
-    typeof candidate.name === "string" &&
-    typeof candidate.destination === "string" &&
-    typeof candidate.rating === "number" &&
-    candidate.rating >= 1 &&
-    candidate.rating <= 5 &&
-    typeof candidate.comment === "string" &&
-    typeof candidate.createdAt === "string" &&
-    (!candidate.quickTags || Array.isArray(candidate.quickTags))
-  );
-};
-
 export const ReviewsSection: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>(defaultReviews);
   const [formData, setFormData] = useState<ReviewFormState>(initialFormState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitMessage, setSubmitMessage] = useState("");
+  const [submitError, setSubmitError] = useState("");
   const [dragActive, setDragActive] = useState(false);
+  const [loadingReviews, setLoadingReviews] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [dataSource, setDataSource] = useState<"supabase" | "memory" | "unknown">(
+    "unknown"
+  );
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    try {
-      const rawData = localStorage.getItem(STORAGE_KEY);
+    const loadReviews = async () => {
+      try {
+        const response = await fetch("/api/reviews");
+        const data = (await response.json()) as ReviewsApiResponse;
 
-      if (!rawData) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultReviews));
-        return;
+        if (response.ok && data.success && Array.isArray(data.reviews)) {
+          setReviews(data.reviews);
+          if (data.source) {
+            setDataSource(data.source);
+          }
+          return;
+        }
+      } catch {
+        // Keep seeded reviews when API is unavailable.
+      } finally {
+        setLoadingReviews(false);
       }
+    };
 
-      const parsedData = JSON.parse(rawData) as unknown;
-      if (!Array.isArray(parsedData)) {
-        return;
-      }
-
-      const cleanedReviews = parsedData.filter(isValidReview);
-      if (cleanedReviews.length > 0) {
-        setReviews(cleanedReviews);
-      }
-    } catch {
-      setReviews(defaultReviews);
-    }
+    loadReviews();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
-  }, [reviews]);
 
   const averageRating = useMemo(() => {
     if (reviews.length === 0) {
@@ -253,28 +245,52 @@ export const ReviewsSection: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitMessage("");
+    setSubmitError("");
 
     if (!validateForm()) {
       return;
     }
 
-    const review: Review = {
-      id: `${Date.now()}`,
-      name: formData.name.trim(),
-      destination: formData.destination.trim(),
-      rating: formData.rating,
-      comment: formData.comment.trim(),
-      createdAt: new Date().toISOString(),
-      quickTags: formData.quickTags,
-    };
+    setSubmitting(true);
 
-    setReviews((prev) => [review, ...prev]);
-    setFormData(initialFormState);
-    setErrors({});
-    setSubmitMessage("Thanks for your review. It is now visible below.");
+    try {
+      const response = await fetch("/api/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          destination: formData.destination,
+          rating: formData.rating,
+          comment: formData.comment,
+          quickTags: formData.quickTags,
+        }),
+      });
+
+      const data = (await response.json()) as ReviewsApiResponse;
+
+      if (!response.ok || !data.success || !data.review) {
+        setErrors((prev) => ({ ...prev, ...(data.errors || {}) }));
+        throw new Error(data.message || "Failed to submit review.");
+      }
+
+      if (data.source) {
+        setDataSource(data.source);
+      }
+
+      setReviews((prev) => [data.review as Review, ...prev]);
+      setFormData(initialFormState);
+      setErrors({});
+      setSubmitMessage("Thanks for your review. It is now visible below.");
+    } catch (error: any) {
+      setSubmitError(error.message || "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -294,6 +310,16 @@ export const ReviewsSection: React.FC = () => {
             /5
           </p>
         </div>
+
+        {dataSource === "memory" && (
+          <div className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800 flex items-start gap-2">
+            <AlertCircle size={18} className="mt-0.5" />
+            <p>
+              Reviews are currently using temporary server memory. Configure
+              Supabase environment variables to make reviews permanently public.
+            </p>
+          </div>
+        )}
 
         <div className="bg-stone-100 border border-stone-300/70 rounded-2xl p-6 md:p-10 shadow-sm">
           <div className="flex items-start gap-3 mb-8">
@@ -531,9 +557,17 @@ export const ReviewsSection: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-stone-700 text-white py-3 rounded-lg text-lg font-semibold hover:bg-stone-800 transition-colors"
+              disabled={submitting}
+              className="w-full bg-stone-700 text-white py-3 rounded-lg text-lg font-semibold hover:bg-stone-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Submit Review
+              {submitting ? (
+                <span className="inline-flex items-center gap-2">
+                  <Loader2 size={18} className="animate-spin" />
+                  Submitting...
+                </span>
+              ) : (
+                "Submit Review"
+              )}
             </button>
 
             <div className="flex items-center justify-center gap-2 text-stone-600 text-sm">
@@ -544,54 +578,65 @@ export const ReviewsSection: React.FC = () => {
             {submitMessage && (
               <p className="text-green-700 text-sm text-center">{submitMessage}</p>
             )}
+
+            {submitError && (
+              <p className="text-red-700 text-sm text-center">{submitError}</p>
+            )}
           </form>
         </div>
 
         <div className="mt-10 space-y-4">
           <h4 className="font-semibold text-stone-900 text-2xl">Recent Reviews</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {reviews.slice(0, 4).map((review) => (
-              <article
-                key={review.id}
-                className="bg-white rounded-xl p-5 border border-stone-200 shadow-sm"
-              >
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <div>
-                    <h5 className="font-semibold text-stone-900">{review.name}</h5>
-                    <p className="text-xs text-stone-500">
-                      {review.destination} | {formatReviewDate(review.createdAt)}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-1 text-amber-500">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <Star
-                        key={`${review.id}-${index}`}
-                        size={16}
-                        fill={index < review.rating ? "currentColor" : "none"}
-                      />
-                    ))}
-                  </div>
-                </div>
 
-                <p className="text-stone-700 text-sm leading-relaxed mb-3">
-                  {review.comment}
-                </p>
-
-                {review.quickTags && review.quickTags.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {review.quickTags.map((tag) => (
-                      <span
-                        key={`${review.id}-${tag}`}
-                        className="text-xs px-2.5 py-1 rounded-full bg-stone-100 text-stone-700"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+          {loadingReviews ? (
+            <div className="bg-white rounded-xl border border-stone-200 p-5 text-stone-600">
+              Loading reviews...
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {reviews.slice(0, 6).map((review) => (
+                <article
+                  key={review.id}
+                  className="bg-white rounded-xl p-5 border border-stone-200 shadow-sm"
+                >
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div>
+                      <h5 className="font-semibold text-stone-900">{review.name}</h5>
+                      <p className="text-xs text-stone-500">
+                        {review.destination} | {formatReviewDate(review.createdAt)}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1 text-amber-500">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <Star
+                          key={`${review.id}-${index}`}
+                          size={16}
+                          fill={index < review.rating ? "currentColor" : "none"}
+                        />
+                      ))}
+                    </div>
                   </div>
-                )}
-              </article>
-            ))}
-          </div>
+
+                  <p className="text-stone-700 text-sm leading-relaxed mb-3">
+                    {review.comment}
+                  </p>
+
+                  {review.quickTags && review.quickTags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {review.quickTags.map((tag) => (
+                        <span
+                          key={`${review.id}-${tag}`}
+                          className="text-xs px-2.5 py-1 rounded-full bg-stone-100 text-stone-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
