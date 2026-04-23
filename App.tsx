@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { Destinations } from './components/Destinations';
 import { Features } from './components/Features';
 import { Gallery } from './components/Gallery';
+import { ReviewsSection } from './components/ReviewsSection';
 import { Footer } from './components/Footer';
 import { DestinationsPage } from './components/DestinationsPage';
 import { ContactPage } from './components/ContactPage';
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <Destinations onNavigate={handleNavigate} />
             <Features />
             <Gallery />
+            <ReviewsSection />
           </>
         )}
         

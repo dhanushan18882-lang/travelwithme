@@ -38,3 +38,12 @@ export interface ContactFormResponse {
   message: string;
   submissionId?: string;
 }
+
+export interface Review {
+  id: string;
+  name: string;
+  destination: string;
+  rating: number;
+  comment: string;
+  createdAt: string;
+}
